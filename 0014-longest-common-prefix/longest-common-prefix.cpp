@@ -12,3 +12,4 @@ public:
         return prefix;
     }
 };
+//O(S)- Where S = total number of characters across all strings, or more precisely S = sum of lengths of all strings,
