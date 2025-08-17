@@ -16,7 +16,6 @@ public:
             mapST[c1] = c2;
             mapTS[c2] = c1;
         }
-
         return true;
     }
 };
