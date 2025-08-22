@@ -19,7 +19,8 @@ public:
             prev=head;
             head=temp;
         }
-        return prev;
+        head=prev;
+        return head;
     }
     void PrintList(ListNode* head){
         while(head!=NULL){
