@@ -2,25 +2,17 @@ class Solution {
 public:
     const long long MOD = 1e9 + 7;
 
-    // Fast modular exponentiation
-    long long modPow(long long base, long long exp) {
-        long long result = 1;
-        base %= MOD;
-        while (exp > 0) {
-            if (exp % 2 == 1) {
-                result = (result * base) % MOD;
-            }
-            base = (base * base) % MOD;
-            exp /= 2;
-        }
-        return result;
+    long long power(long long x,long long y){
+        if(y==0) return 1; 
+        long long ans = power(x, y/2);
+        ans = (ans * ans) % MOD;
+        if(y % 2) ans = (ans * x) % MOD;  // <-- handle odd exponent
+        return ans;
     }
 
     int countGoodNumbers(long long n) {
-        long long evenPositions = (n + 1) / 2; // ceil(n/2)
-        long long oddPositions = n / 2;        // floor(n/2)
-
-        long long res = (modPow(5, evenPositions) * modPow(4, oddPositions)) % MOD;
-        return (int)res;
+        long long odd = n / 2;           // odd indices → primes (4 choices)
+        long long even = n / 2 + n % 2;  // even indices → 0,2,4,6,8 (5 choices)
+        return (power(5, even) * power(4, odd)) % MOD;
     }
 };
